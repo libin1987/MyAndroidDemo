@@ -23,6 +23,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
+
+    compile 'com.github.libin1987:AddAndSubtractLib:0.1'
     compile 'com.android.support:design:24.2.0'
     compile 'org.xutils:xutils:3.3.36'
     compile 'info.hoang8f:android-segmented:1.0.6'
@@ -40,6 +42,8 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.github.techery:properratingbar:0.0.5'
+
     compile project(':pulltorefresh_library')
+
     compile project(':umeng_sdk')
 }
