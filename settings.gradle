@@ -1,2 +1,1 @@
-include ':app', ':umeng_sdk'
-include ':pulltorefresh_library'
+include ':app'
