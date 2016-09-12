@@ -1,12 +1,8 @@
 package com.lib.base;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-
-import org.xutils.http.RequestParams;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.GridView;
 
 import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -18,9 +14,13 @@ import com.lib.http.HttpLib.RequestListener;
 import com.lib.mydemo.model.PagerJson;
 import com.simple.commonadapter.ListViewAdapter;
 
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.GridView;
+import org.xutils.http.RequestParams;
+
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author libin
@@ -30,7 +30,7 @@ import android.widget.GridView;
  *              this.pullToRefreshListView=listview;
  *              initPullToRefreshListView();
  */
-public class RefreshGridFragment<D> extends BaseFragment {
+public class RefreshGridHelper<D>  {
 
 	protected int pager = 1;
 	protected boolean notNext;
