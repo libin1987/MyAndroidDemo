@@ -42,30 +42,26 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
-        tools:replace="android:icon, android:theme"
         android:name="com.lib.base.DemoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon, android:theme">
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" >
-                </action>
+                <action android:name="com.baidu.location.service_v2.2"></action>
             </intent-filter>
         </service>
 
         <!-- umengAppKey，replace to yours -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="579b1a57e0f55a6f960002b1" >
-        </meta-data>
-
+            android:value="579b1a57e0f55a6f960002b1"></meta-data>
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="gziZG3gUUohEXymHjmaSINIICtGDxvPI" />
@@ -73,31 +69,41 @@
 
         <activity
             android:name="com.lib.base.SplashIntro"
-            android:label="" >
-        </activity>
-
+            android:label=""></activity>
         <activity
             android:name="com.lib.base.SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppATheme" />
-
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".ApiDemos">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PullToRefreshListView"
+            android:label="view/PullToUpdate">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOPELIB" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
