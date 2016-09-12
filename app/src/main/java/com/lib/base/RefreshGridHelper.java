@@ -1,5 +1,6 @@
 package com.lib.base;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.GridView;
@@ -32,22 +33,24 @@ import java.util.Set;
  */
 public class RefreshGridHelper<D>  {
 
-	protected int pager = 1;
-	protected boolean notNext;
+	private int pager = 1;
+	private boolean notNext;
+	private final Activity content;
+	private static final String LIMIT = "limit";
+	private static final String PAGER = "pager";
 
-	protected static final String LIMIT = "limit";
-	protected static final String PAGER = "pager";
-
-	protected String api = "";
-	protected PullToRefreshGridView pullToRefreshGridView;
-	protected HashMap<String, String> extraParameters = new HashMap<>();
-	protected List<D> tempData;
-	protected ListViewAdapter<D> adapter;
+	public String api = "";
+	public PullToRefreshGridView pullToRefreshGridView;
+	public HashMap<String, String> extraParameters = new HashMap<>();
+	public List<D> tempData;
+	public ListViewAdapter<D> adapter;
 	private Class<D> clazz;
 
-	@SuppressWarnings("unchecked")
+	public RefreshGridHelper(Activity content) {
+		this.content=content;
+	}
 	protected void initPullToRefreshListView() {
-		clazz = (Class<D>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		clazz = (Class<D>) ((ParameterizedType) adapter.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
 		pullToRefreshGridView.setAdapter(adapter);
 		pullToRefreshGridView.setOnRefreshListener(new OnRefreshListener<GridView>() {

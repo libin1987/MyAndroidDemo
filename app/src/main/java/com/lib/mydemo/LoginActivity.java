@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 public class LoginActivity extends AppCompatActivity {
 
+    public static final java.lang.String MOBILE = "mobile";
+    public static final java.lang.String PASSWORD = "password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

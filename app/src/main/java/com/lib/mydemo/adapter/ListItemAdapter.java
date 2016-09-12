@@ -5,16 +5,14 @@ import com.lib.mydemo.model.ListItemModel;
 import com.simple.commonadapter.ListViewAdapter;
 import com.simple.commonadapter.viewholders.GodViewHolder;
 
-import java.util.List;
-
 /**
  * Created by libin on 2016/9/11.
  */
 public class ListItemAdapter extends ListViewAdapter<ListItemModel>{
 
 
-    public ListItemAdapter( List<ListItemModel> datas) {
-        super(R.layout.item_view, datas);
+    public ListItemAdapter() {
+        super(R.layout.item_view);
     }
 
     @Override

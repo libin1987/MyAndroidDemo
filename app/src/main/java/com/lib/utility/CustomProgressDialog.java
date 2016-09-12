@@ -5,19 +5,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -124,11 +114,13 @@ public class CustomProgressDialog extends ProgressDialog {
 	public static Dialog showsys(Activity context) {
 		 ProgressDialog dialog = new ProgressDialog(context);
          dialog.setMessage("加载中");
+		dialog.show();
          return dialog;
 	}
-	public static Dialog showsys(Activity context,String content) {
+	public static Dialog showsys(Context context,String content) {
 		 ProgressDialog dialog = new ProgressDialog(context);
         dialog.setMessage(content);
+		dialog.show();
         return dialog;
 	}
 //
