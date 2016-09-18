@@ -14,7 +14,7 @@ import com.simple.commonadapter.ListViewAdapter;
 import org.xutils.http.RequestParams;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -41,8 +41,9 @@ public class RefreshListHelper <D>{
         this.content=content;
     }
 
-    public void initPullToRefreshListView() {
-        clazz = (Class<D>) ((ParameterizedType) adapter.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    public void initRefresh() {
+        Type type = adapter.getClass().getGenericSuperclass();
+        clazz = (Class<D>) ((ParameterizedType) type).getActualTypeArguments()[0];
 
         pullToRefreshListView.setAdapter(adapter);
         pullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
@@ -66,23 +67,23 @@ public class RefreshListHelper <D>{
             }
         });
 
-        getDatas();
+       pullToRefreshListView.firstReFreshing(true);
     }
 
-    private class GetDataTask extends AsyncTask<Void, Void, ArrayList<D>> {
+    private class GetDataTask extends AsyncTask<Void, Void, List<D>> {
 
         @Override
-        protected ArrayList<D> doInBackground(Void... params) {
+        protected List<D> doInBackground(Void... params) {
             // Simulates a background job.
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
             }
-            return (ArrayList<D>) tempData;
+            return (List<D>) tempData;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<D> result) {
+        protected void onPostExecute(List<D> result) {
             if (pager == 1) {
                 adapter.clear();
             }

@@ -31,6 +31,6 @@ public class PullToRefreshListView extends BaseActivity {
         refreshListHelper.adapter = new ListItemAdapter();
         refreshListHelper.tempData = datas;
         refreshListHelper.api = "";
-        refreshListHelper.initPullToRefreshListView();
+        refreshListHelper.initRefresh();
     }
 }
