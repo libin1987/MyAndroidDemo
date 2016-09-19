@@ -2,11 +2,14 @@ package com.lib.base;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.view.Gravity;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lib.android.common.util.TimeUtils;
 import com.lib.http.HttpLib;
 import com.lib.mydemo.model.PagerJson;
 import com.simple.commonadapter.ListViewAdapter;
@@ -22,7 +25,7 @@ import java.util.Set;
 /**
  * Created by Administrator on 2016/9/12.
  */
-public class RefreshListHelper <D>{
+public class RefreshListHelper<D> {
 
     private int pager = 1;
     private boolean notNext;
@@ -30,15 +33,15 @@ public class RefreshListHelper <D>{
 
     private static final String LIMIT = "limit";
     private static final String PAGER = "pager";
-    public HashMap<String, String> extraParameters =new HashMap<>();
-    public  String api;
+    public HashMap<String, String> extraParameters = new HashMap<>();
+    public String api;
     public PullToRefreshListView pullToRefreshListView;
-    public List<D> tempData ;
+    public List<D> tempData;
     public ListViewAdapter<D> adapter;
     private Class<D> clazz;
 
     public RefreshListHelper(Activity content) {
-        this.content=content;
+        this.content = content;
     }
 
     public void initRefresh() {
@@ -50,6 +53,10 @@ public class RefreshListHelper <D>{
 
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                String label="更新于:"+TimeUtils.getCurrentTimeInString();
+
+                // Update the LastUpdatedLabel
+                refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
                 pager = 1;
                 notNext = false;
                 getDatas();
@@ -66,8 +73,11 @@ public class RefreshListHelper <D>{
                 getDatas();
             }
         });
-
-       pullToRefreshListView.firstReFreshing(true);
+        TextView tv = new TextView(content);
+        tv.setGravity(Gravity.CENTER);
+        tv.setText("无数据显示,试试下拉刷新");
+        pullToRefreshListView.setEmptyView(tv);
+        pullToRefreshListView.firstReFreshing(true);
     }
 
     private class GetDataTask extends AsyncTask<Void, Void, List<D>> {
@@ -94,6 +104,7 @@ public class RefreshListHelper <D>{
             super.onPostExecute(result);
         }
     }
+
     public void getDatas() {
         if (api.equals("")) {
 
@@ -110,7 +121,7 @@ public class RefreshListHelper <D>{
                 requestParams.addQueryStringParameter(key, extraParameters.get(key));
             }
         }
-        HttpLib.get(content,requestParams, new HttpLib.RequestListener() {
+        HttpLib.get(content, requestParams, new HttpLib.RequestListener() {
 
             @Override
             public void onSuccess(String result) {
