@@ -4,6 +4,7 @@ public class HttpAPI {
 	public static final int CLIENT_USER=1;//1用户端
 	public static final int CLIENT_WUYE=3;//3物业端
 	public static final int CLIENT_HUISHOU=2;//2回收端
+	public static final String APPDOWNLOAD = "";
 	public static  int CLIENT_TYPE=CLIENT_USER;
 	
 	public static final boolean DEBUG = false;//测试模式 ：登录界面 三客户端登录入口
